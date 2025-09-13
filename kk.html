@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adaptive Learning Platform</title>
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      margin: 0;
+      background: linear-gradient(to right, #e0f7fa, #f1f8e9);
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #42a5f5, #5c6bc0);
+      color: white;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 25px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    section {
+      margin-bottom: 35px;
+      padding: 20px;
+      border-radius: 10px;
+      background: #f9fbfd;
+      border-left: 6px solid #42a5f5;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      border-bottom: 2px solid #e3f2fd;
+      padding-bottom: 8px;
+      color: #3949ab;
+    }
+
+    input[type="file"], button {
+      margin-top: 12px;
+      padding: 10px 18px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    button {
+      background: linear-gradient(135deg, #42a5f5, #3949ab);
+      color: white;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, #5c6bc0, #1e88e5);
+      transform: scale(1.05);
+    }
+
+    input[type="file"] {
+      border: 2px dashed #42a5f5;
+      padding: 12px;
+      border-radius: 8px;
+      background: #f0faff;
+      cursor: pointer;
+    }
+
+    .progress-bar {
+      width: 100%;
+      background: #e0e0e0;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 15px 0;
+    }
+
+    .progress {
+      width: 0%;
+      height: 20px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      transition: width 1s ease;
+    }
+
+    .output-box {
+      background: #f7f9fc;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #dfe6ee;
+      margin-top: 12px;
+      font-size: 15px;
+      line-height: 1.5;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Adaptive Learning Platform</h1>
+  </header>
+
+  <main>
+    <!-- Document Upload -->
+    <section>
+      <h2>Upload Study Material</h2>
+      <input type="file" id="fileInput" />
+      <button onclick="processFile()">Process Document</button>
+      <div class="output-box" id="fileOutput">No file processed yet.</div>
+    </section>
+
+    <!-- Assessment Generation -->
+    <section>
+      <h2>Generate Assessment</h2>
+      <button onclick="generateAssessment()">Generate Questions</button>
+      <div class="output-box" id="assessmentOutput">No assessment generated yet.</div>
+    </section>
+
+    <!-- Progress Analytics -->
+    <section>
+      <h2>Progress Analytics</h2>
+      <div class="progress-bar">
+        <div class="progress" id="progressBar"></div>
+      </div>
+      <button onclick="updateProgress()">Update Progress</button>
+    </section>
+
+    <!-- AI Study Recommendations -->
+    <section>
+      <h2>AI Study Recommendations</h2>
+      <button onclick="getRecommendations()">Get Recommendations</button>
+      <div class="output-box" id="recommendationOutput">No recommendations yet.</div>
+    </section>
+  </main>
+
+  <script>
+    function processFile() {
+      const fileInput = document.getElementById("fileInput");
+      const output = document.getElementById("fileOutput");
+      if (fileInput.files.length > 0) {
+        output.textContent = File` "${fileInput.files[0].name}" uploaded and processed successfully (simulation).`;
+      } else {
+        output.textContent = "Please select a file first.";
+      }
+    }
+
+    function generateAssessment() {
+      const questions = [
+        "What is the main idea of the document?",
+        "List 3 key points from the study material.",
+        "Explain one important concept in detail.",
+      ];
+      document.getElementById("assessmentOutput").innerHTML =
+        "<b>Generated Questions:</b><br>" + questions.map(q => "• " + q).join("<br>");
+    }
+
+    function updateProgress() {
+      const progress = document.getElementById("progressBar");
+      let current = parseInt(progress.style.width) || 0;
+      if (current < 100) {
+        progress.style.width = (current + 20) + "%";
+      }
+    }
+
+    function getRecommendations() {
+      const recs = [
+        "Revise Chapter 1 before moving to Chapter 2.",
+        "Practice more multiple-choice questions.",
+        "Focus on weak areas identified in past tests.",
+      ];
+      document.getElementById("recommendationOutput").innerHTML =
+        "<b>AI Recommendations:</b><br>" + recs.map(r => "• " + r).join("<br>");
+    }
+  </script>
+</body>
+</html>
